@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  background-color: #E9E9E9;
+  
+}
+
+
+@font-face {
+  font-family: "itim";
+  src: url("../fonts/Itim/Itim-Regular.ttf");
+}
+
+@font-face {
+  font-family: "inter";
+  src: url("../fonts/Inter/Inter-VariableFont_slnt\,wght.ttf");
+}
