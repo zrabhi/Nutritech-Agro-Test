@@ -9,13 +9,15 @@ export interface Login {
     password: string
 }
 
-export interface Task {
-    name: string
+export interface TaskProp {
+    id: string
+    task: string
     status:string
 }
 export interface HeaderProp{
     name: string
 }
+
 
 export interface User {
     fullName: string

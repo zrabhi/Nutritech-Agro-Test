@@ -6,14 +6,15 @@ import { useContext, useState } from "react";
 import { MdOutlineModeNight } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { IoIosAdd } from "react-icons/io";
-import picture from "@/utils/Detective.png"
+import picture from "@/utils/Detective.png";
 import Image from "next/image";
 
-
 import { CiSearch } from "react-icons/ci";
+import { Task } from "@/components/Task";
+import { TaskProp } from "@/utils/interfaces";
 
 export default function Home() {
-  const { User } = useContext(AppContext)!;
+  const { User, mode, tasks } = useContext(AppContext)!;
   if (!User) throw new Error("Dashboeard  must be used within a AppProvider");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -27,10 +28,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen  flex flex-col">
       <Header name="logout" />
-      <div className="flex flex-col items-center justify-center w-full h-full">
-        <h1 className="font-inter text-bold text-3xl">
+      <div className="flex flex-col items-center sm:justify-center w-full h-full">
+        <h1 className="font-inter  mb-6 text-bold sm:text-3xl text-sm">
           {" "}
           Welcome {User.fullName}, Be creative today!{" "}
         </h1>
@@ -57,16 +58,26 @@ export default function Home() {
             <IoIosAdd />
           </button>
         </div>
-        <div className="sm:w-1/4 mt-10  flex flex-col justify-start items-center">
-          <Image
-            src={picture}
-            className="h-full sm:w-full object-cover"
-            alt="image"
-          />
-        <h1 className="font-inter text-semibold ">Empty...</h1>
+        <div className="w-1/3 h-1/3">
+        {tasks.map((task: TaskProp, index: number) => (
+          
+                        <Task key={index} id={task.id} status={task.status} task={task.task} />
+                        
+                ))}
+       
         </div>
+        {/* <div className="sm:w-1/4 mt-10  flex flex-col justify-start items-center">
+          <Image
+          src={picture}
+          className="h-full sm:w-full object-cover"
+          alt="image"
+          />
+          <h1 className="font-inter text-semibold ">Empty...</h1>
+        </div> */}
       </div>
-      <div></div>
+      <div>
+
+      </div>
     </div>
   );
 }

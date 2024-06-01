@@ -1,8 +1,5 @@
 "use client";
 import toast, { Toaster } from "react-hot-toast";
-
-// const notify = () => toast('Here is your toast.');
-
 import Image from "next/image";
 import Picture from "@/utils/Image.png";
 import { useContext, useState } from "react";
@@ -13,6 +10,7 @@ import { Header } from "@/components/Header";
 
 export default function Home() {
   const { success, error } = useContext(AppContext)!;
+  if (!success || !error) throw new Error("Home screen must be used within a AppProvider");
   const [SignUpForm, setSignUpForm] = useState<SignUp>({
     email: "",
     fullName: "",
@@ -59,9 +57,7 @@ export default function Home() {
     }
     console.log("Form submitted:", SignUpForm);
     success("Success!");
-
-    // Reset Sign Up Form to default
-
+    
     setSignUpForm({
       email: "",
       fullName: "",
@@ -72,7 +68,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header name="login" />
-      <div className="flex flex-col sm:flex-row h-full  items-center sm:gap-[20rem]">
+      <div className="flex flex-col sm:flex-row h-full justify-center items-center sm:gap-[20rem]">
         <div className="container sm:w-1/3 w-full sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">
             Sign Up Now

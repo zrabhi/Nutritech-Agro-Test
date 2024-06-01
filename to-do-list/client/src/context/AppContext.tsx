@@ -1,5 +1,5 @@
 "use client"
-import { User } from "@/utils/interfaces";
+import { TaskProp, User } from "@/utils/interfaces";
 import { error } from "console";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -32,12 +32,15 @@ interface WindowData {
 }
 interface AppContextType {
   User: User;
+  mode: string;
+  tasks: TaskProp;
   // BioData: BiographyType;
   // ResumeData: ResumeType;
   // WindowData: WindowData;
   // Clicked: string;
   // setClicked: React.Dispatch<React.SetStateAction<string>>;
   // ContactMeData: ContactMeType
+    setTasks: React.Dispatch<React.SetStateAction<TaskProp[]>>;
     success: (message: string) => string;
     error: (message: string) => string;
 }
@@ -52,12 +55,25 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [User, setUser] = useState<User>({
     fullName:"Zakaria Rabhi"
   })
+  const [tasks , setTasks] = useState<TaskProp[]>(
+    [
+      { id: '1', task: 'Complete project A', status: 'In Progress' },
+      { id: '2', task: 'Review project B', status: 'Pending' },
+      { id: '3', task: 'Submit report', status: 'Complete' }
+  ]
+  );
+
+  const [mode, setMode] = useState<string>("light");
   const success = (message: string) => toast.success(message);
   const error = (message: string) => toast.error(message);
   return (
     <AppContext.Provider
       value={
-        {success: success,
+        {
+          success: success,
+          setTasks: setTasks,
+          mode:mode,
+          tasks: tasks,
           User:User,
           error:error,
         }
