@@ -1,4 +1,5 @@
 "use client"
+import { User } from "@/utils/interfaces";
 import { error } from "console";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -30,6 +31,7 @@ interface WindowData {
   setWidth: (Width: number) => void;
 }
 interface AppContextType {
+  User: User;
   // BioData: BiographyType;
   // ResumeData: ResumeType;
   // WindowData: WindowData;
@@ -47,13 +49,16 @@ interface AppProviderProps {
 export const AppContext = React.createContext<AppContextType | null>(null);
 
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  
+  const [User, setUser] = useState<User>({
+    fullName:"Zakaria Rabhi"
+  })
   const success = (message: string) => toast.success(message);
   const error = (message: string) => toast.error(message);
   return (
     <AppContext.Provider
       value={
         {success: success,
+          User:User,
           error:error,
         }
       }

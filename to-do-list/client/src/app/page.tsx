@@ -9,6 +9,7 @@ import { useContext, useState } from "react";
 import { SignUp } from "@/utils/interfaces";
 import { AppContext } from "@/context/AppContext";
 import Link from "next/link";
+import { Header } from "@/components/Header";
 
 export default function Home() {
   const { success, error } = useContext(AppContext)!;
@@ -70,16 +71,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <div className="flex justify-between items-center  sm:mr-24">
-        <h1 className="sm:text-4xl text-2xl text-Purple font-bold font-itim sm:m-24 m-10">
-          TO-DO-NOW
-        </h1>
-        <Link href={"/login"}>
-          <button className="sm:text-2xl sm:h-14 sm:w-36 w-28 h-8 text-[#ffff] text-white font-bold font-inter rounded-lg bg-Purple">
-            Login
-          </button>
-        </Link>
-      </div>
+      <Header name="login" />
       <div className="flex flex-col sm:flex-row h-full  items-center sm:gap-[20rem]">
         <div className="container sm:w-1/3 w-full sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">

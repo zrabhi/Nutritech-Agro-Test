@@ -13,3 +13,10 @@ export interface Task {
     name: string
     status:string
 }
+export interface HeaderProp{
+    name: string
+}
+
+export interface User {
+    fullName: string
+}
