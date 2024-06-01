@@ -7,16 +7,18 @@ import { SignUp } from "@/utils/interfaces";
 import { AppContext } from "@/context/AppContext";
 import Link from "next/link";
 import { Header } from "@/components/Header";
+import { useRouter } from "next/navigation";
+import { log } from "console";
 
 export default function Home() {
   const { success, error } = useContext(AppContext)!;
   if (!success || !error) throw new Error("Home screen must be used within a AppProvider");
   const [SignUpForm, setSignUpForm] = useState<SignUp>({
     email: "",
-    fullName: "",
+    username: "",
     password: "",
   });
-
+ const router = useRouter()
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setSignUpForm((prevState) => ({
@@ -26,9 +28,9 @@ export default function Home() {
   };
 
   // todo: Sign Up endpoint here
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (!SignUpForm.email || !SignUpForm.fullName || !SignUpForm.password) {
+    if (!SignUpForm.email || !SignUpForm.username || !SignUpForm.password) {
       error("All fields are required.");
       return;
     }
@@ -55,12 +57,28 @@ export default function Home() {
       );
       return;
     }
-    console.log("Form submitted:", SignUpForm);
-    success("Success!");
+
+    fetch('http://127.0.0.1:8000/api/signup', {
+      method: 'POST',
+     
+      body: JSON.stringify(SignUpForm)
+  }).then(response => response.json())
+  .then(data => {
+    console.log(data)
+      if (data.token) {
+          // Save the token in localStorage or session
+          localStorage.setItem('token', data.token);
+          success("Success!");
+          router.push('/dashboard')
+      } else {
+          error('Sign up failed:');
+      }
+  })
+  .catch(er => console.log(er));
     
     setSignUpForm({
       email: "",
-      fullName: "",
+      username: "",
       password: "",
     });
   };
@@ -68,8 +86,8 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header name="login" />
-      <div className="flex flex-col sm:flex-row h-full justify-center items-center sm:gap-[20rem]">
-        <div className="container sm:w-1/3 w-full sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
+      <div className="flex flex-col sm:flex-row  h-full justify-center items-center sm:gap-[20rem]">
+        <div className="container sm:w-1/3 w-full  items-center sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">
             Sign Up Now
           </h1>
@@ -79,10 +97,10 @@ export default function Home() {
               <h1 className="text-xl font-semibold mb-2">Full name</h1>
               <input
                 type="text"
-                name="fullName"
+                name="username"
                 className="w-full rounded p-4 bg-Gray"
                 placeholder="Full name"
-                value={SignUpForm.fullName}
+                value={SignUpForm.username}
                 onChange={handleChange}
               />
             </div>
