@@ -2,6 +2,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import  UserSerializer
+from django.contrib.auth import authenticate
+
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -12,10 +14,19 @@ from .models import User
 
 @api_view(['POST'])
 def login(request):
-    return Response({})
+    email = request.data.get('email')
+    password = request.data.get('password')
+    print(email, password)
+    user = authenticate(email=email, password=password)
+
+    if not user:
+        return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    token = Token.objects.get(user=user)
+    return Response({'token': token.key, 'user': UserSerializer(user).data}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def sign_up(request):
     print("data", request.data)
     try:
@@ -34,7 +45,7 @@ def sign_up(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_user(request):
     user = request.user
     serializer = UserSerializer(user)

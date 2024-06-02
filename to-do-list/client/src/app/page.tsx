@@ -12,13 +12,14 @@ import { log } from "console";
 
 export default function Home() {
   const { success, error } = useContext(AppContext)!;
-  if (!success || !error) throw new Error("Home screen must be used within a AppProvider");
+  if (!success || !error)
+    throw new Error("Home screen must be used within a AppProvider");
   const [SignUpForm, setSignUpForm] = useState<SignUp>({
     email: "",
     username: "",
     password: "",
   });
- const router = useRouter()
+  const router = useRouter();
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setSignUpForm((prevState) => ({
@@ -58,24 +59,27 @@ export default function Home() {
       return;
     }
 
-    fetch('http://127.0.0.1:8000/api/signup', {
-      method: 'POST',
-     
-      body: JSON.stringify(SignUpForm)
-  }).then(response => response.json())
-  .then(data => {
-    console.log(data)
-      if (data.token) {
+    fetch("http://127.0.0.1:8000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(SignUpForm),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        if (data.token) {
           // Save the token in localStorage or session
-          localStorage.setItem('token', data.token);
+          localStorage.setItem("token", data.token);
           success("Success!");
-          router.push('/dashboard')
-      } else {
-          error('Sign up failed:');
-      }
-  })
-  .catch(er => console.log(er));
-    
+          router.push("/dashboard");
+        } else {
+          error("Sign up failed:");
+        }
+      })
+      .catch((er) => console.log(er));
+
     setSignUpForm({
       email: "",
       username: "",
@@ -87,7 +91,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       <Header name="login" />
       <div className="flex flex-col sm:flex-row  h-full justify-center items-center sm:gap-[20rem]">
-        <div className="container sm:w-1/3 w-full  items-center sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
+        <div className="container sm:w-1/3    sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">
             Sign Up Now
           </h1>

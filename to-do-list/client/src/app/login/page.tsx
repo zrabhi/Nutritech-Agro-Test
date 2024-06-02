@@ -35,6 +35,28 @@ export default function Home() {
       error("Invalid email format.");
       return;
     }
+    fetch('http://127.0.0.1:8000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(LoginForm)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const { token, user } = data;
+            localStorage.setItem('token', token);
+            // localStorage.setItem('user', JSON.stringify(user));
+            error('Login successful');
+        })
+        .catch(error => {
+            error('Failed to login: ' + error.message);
+        });
     console.log("Form submitted:", LoginForm);
     success("Success");
     // Reset Login Form to default
