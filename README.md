@@ -46,7 +46,13 @@ To get started with ToDo Now, follow these steps:
   
   ```
 
-3. **Lancer l'Application** :
+3. **Lancer l'Application || onfigurer les Variables d'Environnement** :
+  
+-  Créez un fichier `.env` dans le répertoire `client` et ajoutez la variable d'environnement suivante :  
+  ```
+  NEXT_PUBLIC_BACK_END="127.0.0.1:8000"
+  ```
+
 - Lancez le serveur frontend :
   ```
   npm run dev
@@ -54,7 +60,7 @@ To get started with ToDo Now, follow these steps:
 - Lancez le serveur backend :
   ```
   python3 manage.py runserver
-  ```
+- Créez un fichier `.env.local` dans le répertoire `client` et ajoutez la variable d'environnement suivante :  ```
 
 4.  **Ouvrir l'Application** :
 - Une fois les serveurs lancés, ouvrez votre navigateur web et accédez à `http://localhost:3000` pour voir l'application.
