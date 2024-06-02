@@ -35,7 +35,7 @@ export default function Home() {
       error("Invalid email format.");
       return;
     }
-    fetch('http://127.0.0.1:8000/api/login', {
+    fetch(`http://${process.env.BACK_END}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

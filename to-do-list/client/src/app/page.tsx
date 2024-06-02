@@ -8,7 +8,6 @@ import { AppContext } from "@/context/AppContext";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { useRouter } from "next/navigation";
-import { log } from "console";
 
 export default function Home() {
   const { success, error } = useContext(AppContext)!;
@@ -58,8 +57,9 @@ export default function Home() {
       );
       return;
     }
-
-    fetch("http://127.0.0.1:8000/api/signup", {
+    console.log(process.env.BACK_END);
+    
+    fetch(`http://${process.env.NEXT_PUBLIC_BACK_END}/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -70,16 +70,15 @@ export default function Home() {
       .then((data) => {
         console.log(data);
         if (data.token) {
-          // Save the token in localStorage or session
           localStorage.setItem("token", data.token);
+          localStorage.setItem("username", data.user.username);
           success("Success!");
           router.push("/dashboard");
         } else {
-          error("Sign up failed:");
+          error("Sign up failed");
         }
       })
-      .catch((er) => console.log(er));
-
+    
     setSignUpForm({
       email: "",
       username: "",

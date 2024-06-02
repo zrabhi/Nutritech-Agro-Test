@@ -8,7 +8,7 @@ const config: Config = {
   ],
   theme: {
     colors: {
-      Purple:'#474BCA',
+      Purple:'#6C63FF',
       Gray:'#CCCCCC'
     },
     fontFamily:{

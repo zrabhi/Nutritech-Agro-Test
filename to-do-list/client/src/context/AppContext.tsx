@@ -33,7 +33,7 @@ interface WindowData {
 interface AppContextType {
   User: User;
   mode: string;
-  tasks: TaskProp;
+  tasks: [];
   // BioData: BiographyType;
   // ResumeData: ResumeType;
   // WindowData: WindowData;
@@ -57,9 +57,9 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   })
   const [tasks , setTasks] = useState<TaskProp[]>(
     [
-      { id: '1', task: 'Complete project A', status: 'In Progress' },
-      { id: '2', task: 'Review project B', status: 'Pending' },
-      { id: '3', task: 'Submit report', status: 'Complete' }
+      // { id: '1', task: 'Complete project A', status: 'In Progress' },
+      // { id: '2', task: 'Review project B', status: 'Pending' },
+      // { id: '3', task: 'Submit report', status: 'Complete' }
   ]
   );
 
