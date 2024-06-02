@@ -137,7 +137,7 @@ export default function Home() {
             <div className="flex px-4 py-4 justify-center">
               <button
                 type="submit"
-                className="sm:w-80 w-full rounded bg-Purple text-center py-3 font-inter font-semibold text-2xl text-[#ffff] text-white hover:bg-green-dark focus:outline-none my-1"
+                className="w-full rounded bg-Purple text-center py-3 font-inter font-semibold text-2xl text-[#ffff] text-white hover:bg-green-dark focus:outline-none my-1"
               >
                 Create Account
               </button>
