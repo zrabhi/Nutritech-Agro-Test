@@ -64,6 +64,11 @@ To get started with ToDo Now, follow these steps:
 
 4.  **Ouvrir l'Application** :
 - Une fois les serveurs lancés, ouvrez votre navigateur web et accédez à `http://localhost:3000` pour voir l'application.
+  ## Routes du Site Web
+- `/signup`: Page d'inscription pour créer un nouveau compte utilisateur.
+- `/login`: Page de connexion pour accéder à un compte utilisateur existant.
+- `/dashboard`: Tableau de bord principal affichant la liste des tâches et les fonctionnalités de gestion des tâches.
+
 
 ## Visualiser les Conceptions
 Vous pouvez voir les conceptions de ToDo Now sur Figma. [Cliquez ici pour voir les conceptions](https://www.figma.com/design/I0qR377erNNxojA8bZvhXS/TO-DO-LIST?node-id=8-60&t=idxUstDtzz2JMruX-1).
