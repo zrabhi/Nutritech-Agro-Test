@@ -89,12 +89,17 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header name="login" />
-      <div className="flex flex-col sm:flex-row  h-full justify-center items-center sm:gap-[20rem]">
+      <div className="flex flex-col items-center sm:justify-center w-full h-full">
         <div className="container sm:w-1/3    sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">
-            Sign Up Now
+            Sign Up Now<br/>
           </h1>
-          <p className="mb-4">Some text here</p>
+          <p className="mb-4 ml-2 font-inter text-sm font-semibold">to access your tasks and keep your day
+            organized with 
+            <span className="text-Purple text-xl font-itim">
+             {" "} TO-DO-NOW.
+            </span>
+          </p>
           <form onSubmit={handleSubmit}>
             <div className="px-4 py-2">
               <h1 className="text-xl font-semibold mb-2">Full name</h1>
@@ -147,13 +152,13 @@ export default function Home() {
             </h1>
           </div>
         </div>
-        <div className="sm:w-1/3  hidden sm:flex justify-start items-center">
+        {/* <div className="sm:w-1/3  hidden sm:flex justify-start items-center">
           <Image
             src={Picture}
             className="sm:h-full sm:w-full object-cover"
             alt="image"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -130,7 +130,7 @@ export default function Home() {
             value={task}
             onChange={(e) => settask(e.target.value)}
           />
-          <div className="mt-[10rem] flex items-end justify-between ml-6 mr-6">
+          <div className="mt-[4rem] flex items-end justify-between ml-6 mr-6">
             <button
               className="w-[92px] rounded-xl font-inter text-[#6C63FF] h-[42px] bg-[#fff] border-2 border-[#6C63FF]"
               onClick={closeModal}

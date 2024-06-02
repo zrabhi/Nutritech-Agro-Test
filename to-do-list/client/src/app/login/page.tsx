@@ -68,12 +68,12 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header name="Sign Up" />
-      <div className="flex flex-col sm:flex-row h-full  items-center sm:gap-[9rem]">
+      <div className="flex flex-col items-center sm:justify-center w-full h-full">
         <div className="container sm:w-1/3 w-full sm:my-24 sm:mx-36 m-4 flex flex-col justify-center px-4">
           <h1 className="sm:text-6xl text-2xl font-inter font-semibold mb-4">
             Login Now
           </h1>
-          <p className="mb-4">
+          <p className="mb-4 text-sm font-semibold ">
             Hi ,Welcome back! Sign in to access your tasks and keep your day
             organized with TO-DO-NOW.
           </p>
@@ -118,13 +118,13 @@ export default function Home() {
             </h1>
           </div>
         </div>
-        <div className="sm:w-1/3  hidden sm:flex justify-start items-center">
+        {/* <div className="sm:w-1/3  hidden sm:flex justify-start items-center">
           <Image
             src={Picture}
             className="sm:h-full sm:w-full object-cover"
             alt="image"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
